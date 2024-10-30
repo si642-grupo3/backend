@@ -37,6 +37,24 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
     @Getter
     private Float igv = 0.18f;
 
+    @Getter
+    private Integer dias_anio;
+
+    @Getter
+    private Integer plazo_tasa;
+
+    @Getter
+    private Float tasa_nominal;
+
+    @Getter
+    private Float tasa_efectiva;
+
+    @Getter
+    private Integer periodo_capitalizacion;
+
+    @Getter
+    private Date fecha_descuento;
+
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Moneda Moneda;
 
@@ -52,6 +70,12 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
         this.fecha_pago = command.fecha_pago();
         this.retencion = command.retencion();
         this.total_facturado = command.total_facturado();
+        this.dias_anio = command.dias_anio();
+        this.plazo_tasa = command.plazo_tasa();
+        this.tasa_nominal = command.tasa_nominal();
+        this.tasa_efectiva = command.tasa_efectiva();
+        this.periodo_capitalizacion = command.periodo_capitalizacion();
+        this.fecha_descuento = command.fecha_descuento();
         this.Moneda = command.Moneda();
     }
 
@@ -60,6 +84,12 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
         this.fecha_pago = command.fecha_pago();
         this.retencion = command.retencion();
         this.total_facturado = command.total_facturado();
+        this.dias_anio = command.dias_anio();
+        this.plazo_tasa = command.plazo_tasa();
+        this.tasa_nominal = command.tasa_nominal();
+        this.tasa_efectiva = command.tasa_efectiva();
+        this.periodo_capitalizacion = command.periodo_capitalizacion();
+        this.fecha_descuento = command.fecha_descuento();
         this.Moneda = command.Moneda();
     }
 

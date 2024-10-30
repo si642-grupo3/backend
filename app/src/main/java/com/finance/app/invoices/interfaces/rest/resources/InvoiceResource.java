@@ -11,6 +11,13 @@ public record InvoiceResource(
         Date fecha_pago,
         Float retencion,
         Float total_facturado,
+        Float igv,
+        Integer dias_anio,
+        Integer plazo_tasa,
+        Float tasa_nominal,
+        Float tasa_efectiva,
+        Integer periodo_capitalizacion,
+        Date fecha_descuento,
         Moneda Moneda
 ) {
 }
