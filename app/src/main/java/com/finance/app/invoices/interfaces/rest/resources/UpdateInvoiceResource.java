@@ -10,12 +10,6 @@ public record UpdateInvoiceResource(
         Date fecha_pago,
         Float retencion,
         Float total_facturado,
-        Integer dias_anio,
-        Integer plazo_tasa,
-        Float tasa_nominal,
-        Float tasa_efectiva,
-        Integer periodo_capitalizacion,
-        Date fecha_descuento,
         Moneda Moneda
 ) {
 }
