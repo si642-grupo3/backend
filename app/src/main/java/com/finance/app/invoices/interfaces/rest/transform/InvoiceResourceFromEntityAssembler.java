@@ -13,6 +13,13 @@ public class InvoiceResourceFromEntityAssembler {
                 entity.getFecha_pago(),
                 entity.getRetencion(),
                 entity.getTotal_facturado(),
+                entity.getIgv(),
+                entity.getDias_anio(),
+                entity.getPlazo_tasa(),
+                entity.getTasa_nominal(),
+                entity.getTasa_efectiva(),
+                entity.getPeriodo_capitalizacion(),
+                entity.getFecha_descuento(),
                 entity.getMoneda()
         );
     }
