@@ -59,8 +59,14 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
     private Moneda Moneda;
 
     /*
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(mappedBy = "factura", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Integer Cliente;*/
+
+    /*@OneToMany(mappedBy = "factura", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CosteInicial> costesIniciales;*/
+
+    /*@OneToMany(mappedBy = "factura", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CosteFinal> costesIniciales;*/
 
     public Factura() {this.Moneda = new Moneda();}
 
