@@ -1,7 +1,5 @@
 package com.finance.app.initialCosts.interfaces.rest.resources;
 
-import lombok.Getter;
-
 public record CreateInitialCostResource(
         String motivo,
         Float valor_efectivo,
