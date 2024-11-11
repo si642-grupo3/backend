@@ -14,8 +14,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/carteras", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Monedas", description = "Moneda endpoints")
+@RequestMapping(value = "/api/v1/cartera", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Carteras", description = "Cartera endpoints")
 public class PortfoliosController {
 
     private final PortfolioQueryService portfolioQueryService;

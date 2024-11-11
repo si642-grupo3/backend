@@ -1,10 +1,11 @@
 package com.finance.app.users.interfaces.rest.transform;
 
+import com.finance.app.invoices.interfaces.rest.transform.InvoiceResourceFromEntityAssembler;
 import com.finance.app.users.domain.model.aggregates.Cliente;
 import com.finance.app.users.interfaces.rest.resources.ClientResource;
 
 public class ClientResourceFromEntityAssembler {
-    public static ClientResource toResourceFromEntity(Cliente entity){
+    public static ClientResource toResourceFromEntity(Cliente entity) {
         return new ClientResource(
                 entity.getId(),
                 entity.getNombre(),
@@ -13,7 +14,10 @@ public class ClientResourceFromEntityAssembler {
                 entity.getTelefono(),
                 entity.getDireccion(),
                 entity.getEmail(),
-                entity.getPassword()
+                entity.getPassword(),
+                entity.getFacturas().stream()
+                        .map(InvoiceResourceFromEntityAssembler::toResourceFromEntity)
+                        .toList()
         );
     }
 }

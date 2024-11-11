@@ -18,7 +18,8 @@ public record UpdateReportCommand(
         Float valorRecibido,
         Float valorEntregado,
         Float tcea,
-        Integer facturaId
+        Long factura_id,
+        Long cartera_id
 ) {
     public UpdateReportCommand{
         if (id == null) {
@@ -66,8 +67,8 @@ public record UpdateReportCommand(
         if (tcea == null) {
             throw new IllegalArgumentException("tcea is required");
         }
-        if (facturaId == null) {
-            throw new IllegalArgumentException("facturaId is required");
+        if (factura_id == null) {
+            throw new IllegalArgumentException("factura_id is required");
         }
     }
 }

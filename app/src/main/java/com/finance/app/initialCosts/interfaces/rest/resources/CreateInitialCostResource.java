@@ -3,7 +3,8 @@ package com.finance.app.initialCosts.interfaces.rest.resources;
 public record CreateInitialCostResource(
         String motivo,
         Float valor_efectivo,
-        Float valor_porcentaje
+        Float valor_porcentaje,
+        Long factura_id
 ) {
     public CreateInitialCostResource{
         if (motivo == null || motivo.isBlank()) {
@@ -14,6 +15,9 @@ public record CreateInitialCostResource(
         }
         if (valor_porcentaje == null) {
             throw new IllegalArgumentException("valor_porcentaje cannot be null");
+        }
+        if (factura_id == null) {
+            throw new IllegalArgumentException("factura_id cannot be null");
         }
     }
 

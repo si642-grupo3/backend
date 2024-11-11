@@ -9,7 +9,8 @@ public class CreateFinalCostCommandFromResourceAssembler {
         return new CreateFinalCostCommand(
                 resource.motivo(),
                 resource.valor_efectivo(),
-                resource.valor_porcentaje()
+                resource.valor_porcentaje(),
+                resource.factura_id()
         );
     }
 }

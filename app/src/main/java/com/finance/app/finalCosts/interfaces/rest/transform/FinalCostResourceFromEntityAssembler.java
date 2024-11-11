@@ -9,7 +9,8 @@ public class FinalCostResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getMotivo(),
                 entity.getValor_efectivo(),
-                entity.getValor_porcentaje()
+                entity.getValor_porcentaje(),
+                entity.getFactura().getId()
         );
     }
 }

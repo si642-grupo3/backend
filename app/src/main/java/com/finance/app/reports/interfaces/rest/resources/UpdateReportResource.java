@@ -18,6 +18,7 @@ public record UpdateReportResource(
         Float valorRecibido,
         Float valorEntregado,
         Float tcea,
-        Integer facturaId
+        Long factura_id,
+        Long cartera_id
 ) {
 }

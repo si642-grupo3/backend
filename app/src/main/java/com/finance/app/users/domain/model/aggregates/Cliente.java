@@ -1,8 +1,12 @@
 package com.finance.app.users.domain.model.aggregates;
 
+import com.finance.app.invoices.domain.model.aggregates.Factura;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.data.domain.AbstractAggregateRoot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -33,6 +37,9 @@ public class Cliente extends AbstractAggregateRoot<Cliente> {
 
     @Getter
     private String password;
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Factura> facturas = new ArrayList<>();
 
     public Cliente(){}
 

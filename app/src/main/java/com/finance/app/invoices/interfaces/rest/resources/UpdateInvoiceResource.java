@@ -1,7 +1,5 @@
 package com.finance.app.invoices.interfaces.rest.resources;
 
-import com.finance.app.invoices.domain.model.entities.Moneda;
-
 import java.util.Date;
 
 public record UpdateInvoiceResource(
@@ -16,6 +14,6 @@ public record UpdateInvoiceResource(
         Float tasa_efectiva,
         Integer periodo_capitalizacion,
         Date fecha_descuento,
-        Moneda Moneda
+        Long Moneda
 ) {
 }

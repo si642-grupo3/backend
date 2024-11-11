@@ -22,7 +22,8 @@ public class UpdateReportCommandFromResourceAssembler {
                 resource.valorRecibido(),
                 resource.valorEntregado(),
                 resource.tcea(),
-                resource.facturaId()
+                resource.factura_id(),
+                resource.cartera_id()
         );
     }
 }

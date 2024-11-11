@@ -16,7 +16,7 @@ public record UpdateInvoiceCommand(
         Float tasa_efectiva,
         Integer periodo_capitalizacion,
         Date fecha_descuento,
-        Moneda Moneda
+        Long moneda
 ) {
     public UpdateInvoiceCommand {
         if (id == null) {
@@ -52,7 +52,7 @@ public record UpdateInvoiceCommand(
         if (fecha_descuento == null) {
             throw new IllegalArgumentException("fecha_descuento cannot be null");
         }
-        if (Moneda == null) {
+        if (moneda == null) {
             throw new IllegalArgumentException("Moneda_id cannot be null");
         }
     }

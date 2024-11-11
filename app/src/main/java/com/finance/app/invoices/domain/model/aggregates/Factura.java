@@ -1,16 +1,24 @@
 package com.finance.app.invoices.domain.model.aggregates;
 
+import com.finance.app.finalCosts.domain.model.aggregates.CosteFinal;
+import com.finance.app.initialCosts.domain.model.aggregates.CosteInicial;
 import com.finance.app.invoices.domain.model.commands.CreateInvoiceCommand;
 import com.finance.app.invoices.domain.model.commands.UpdateInvoiceCommand;
 import com.finance.app.invoices.domain.model.entities.Moneda;
+import com.finance.app.invoices.infrastructure.persistence.jpa.CurrencyRepository;
 import com.finance.app.platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.finance.app.reports.domain.model.aggregates.Reporte;
+import com.finance.app.users.domain.model.aggregates.Cliente;
+import com.finance.app.users.infrastructure.persistance.jpa.ClientRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -55,22 +63,25 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
     @Getter
     private Date fecha_descuento;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     private Moneda Moneda;
 
-    /*
-    @ManyToOne(mappedBy = "factura", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Integer Cliente;*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-    /*@OneToMany(mappedBy = "factura", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<CosteInicial> costesIniciales;*/
+    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<CosteInicial> costesIniciales = new ArrayList<>();
 
-    /*@OneToMany(mappedBy = "factura", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<CosteFinal> costesIniciales;*/
+    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<CosteFinal> costesFinales = new ArrayList<>();
+
+    @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL)
+    private Reporte reporte;
 
     public Factura() {this.Moneda = new Moneda();}
 
-    public Factura(CreateInvoiceCommand command) {
+    public Factura(CreateInvoiceCommand command, CurrencyRepository currencyRepository, ClientRepository clientRepository) {
         this.numero = command.numero();
         this.fecha_emision = command.fecha_emision();
         this.fecha_pago = command.fecha_pago();
@@ -82,10 +93,13 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
         this.tasa_efectiva = command.tasa_efectiva();
         this.periodo_capitalizacion = command.periodo_capitalizacion();
         this.fecha_descuento = command.fecha_descuento();
-        this.Moneda = command.Moneda();
+        this.Moneda = currencyRepository.findById(command.moneda())
+                .orElseThrow(() -> new EntityNotFoundException("Currency not found"));
+        this.cliente = clientRepository.findById(command.cliente())
+                .orElseThrow(() -> new EntityNotFoundException("Client not found"));
     }
 
-    public void UpdateInvoice(UpdateInvoiceCommand command) {
+    public void UpdateInvoice(UpdateInvoiceCommand command, CurrencyRepository currencyRepository) {
         this.fecha_emision = command.fecha_emision();
         this.fecha_pago = command.fecha_pago();
         this.retencion = command.retencion();
@@ -96,7 +110,8 @@ public class Factura extends AuditableAbstractAggregateRoot<Factura> {
         this.tasa_efectiva = command.tasa_efectiva();
         this.periodo_capitalizacion = command.periodo_capitalizacion();
         this.fecha_descuento = command.fecha_descuento();
-        this.Moneda = command.Moneda();
+        this.Moneda = currencyRepository.findById(command.moneda())
+                .orElseThrow(() -> new EntityNotFoundException("Currency not found"));
     }
 
 }

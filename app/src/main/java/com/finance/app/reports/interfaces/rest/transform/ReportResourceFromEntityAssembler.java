@@ -24,7 +24,8 @@ public class ReportResourceFromEntityAssembler {
             entity.getValorRecibido(),
             entity.getValorEntregado(),
             entity.getTcea(),
-            entity.getFacturaId()
+            entity.getFactura().getId(),
+            entity.getCartera().getId()
         );
     }
 }

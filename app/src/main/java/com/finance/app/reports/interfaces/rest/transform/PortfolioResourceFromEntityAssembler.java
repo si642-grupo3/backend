@@ -1,5 +1,6 @@
 package com.finance.app.reports.interfaces.rest.transform;
 
+import com.finance.app.invoices.interfaces.rest.transform.InvoiceResourceFromEntityAssembler;
 import com.finance.app.reports.domain.model.entities.Cartera;
 import com.finance.app.reports.interfaces.rest.resources.PortfolioResource;
 
@@ -10,7 +11,9 @@ public class PortfolioResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getFechaDescuento(),
                 entity.getTceaCartera(),
-                entity.getReporteId()
+                entity.getReportes().stream()
+                .map(ReportResourceFromEntityAssembler::toResourceFromEntity)
+                .toList()
         );
     }
 }

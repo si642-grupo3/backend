@@ -5,6 +5,7 @@ import com.finance.app.initialCosts.domain.model.commands.CreateInitialCostComma
 import com.finance.app.initialCosts.domain.model.commands.DeleteInitialCostCommand;
 import com.finance.app.initialCosts.domain.services.InitialCostCommandService;
 import com.finance.app.initialCosts.infrastructure.persistence.jpa.InitialCostRepository;
+import com.finance.app.invoices.infrastructure.persistence.jpa.InvoiceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,14 +14,16 @@ import java.util.Optional;
 public class InitialCostCommandServiceImpl implements InitialCostCommandService {
 
     private final InitialCostRepository initialCostRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    public InitialCostCommandServiceImpl(InitialCostRepository initialCostRepository) {
+    public InitialCostCommandServiceImpl(InitialCostRepository initialCostRepository, InvoiceRepository invoiceRepository) {
         this.initialCostRepository = initialCostRepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     @Override
     public Optional<CosteInicial> handle(CreateInitialCostCommand command){
-        var initialCost = new CosteInicial(command);
+        var initialCost = new CosteInicial(command, invoiceRepository);
         var createdInitialCost = initialCostRepository.save(initialCost);
         return Optional.of(createdInitialCost);
     }

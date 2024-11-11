@@ -18,7 +18,8 @@ public class CreateInvoiceCommandFromResourceAssembler {
                 resource.tasa_efectiva(),
                 resource.periodo_capitalizacion(),
                 resource.fecha_descuento(),
-                resource.Moneda()
+                resource.moneda(),
+                resource.cliente()
         );
     }
 }

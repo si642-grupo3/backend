@@ -16,7 +16,8 @@ public record CreateInvoiceResource(
         Float tasa_efectiva,
         Integer periodo_capitalizacion,
         Date fecha_descuento,
-        Moneda Moneda
+        Long moneda,
+        Long cliente
 ) {
     public CreateInvoiceResource{
         if(numero == null) {
@@ -52,8 +53,11 @@ public record CreateInvoiceResource(
         if(fecha_descuento == null) {
             throw new IllegalArgumentException("fecha_descuento cannot be null");
         }
-        if(Moneda== null) {
+        if(moneda== null) {
             throw new IllegalArgumentException("Moneda_id cannot be null");
+        }
+        if(cliente == null) {
+            throw new IllegalArgumentException("Cliente_id cannot be null");
         }
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/clients", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/clientes", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Clientes", description = "Clientes Endpoint")
 public class ClientsController {
 
@@ -31,7 +31,7 @@ public class ClientsController {
         this.clientQueryService = clientQueryService;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<ClientResource> createClient(@RequestBody CreateClientResource resource) {
         var createClientCommand = CreateClientCommandFromResourceAssembler.toCommandFromResource(resource);
         var clientId = clientCommandService.handle(createClientCommand);

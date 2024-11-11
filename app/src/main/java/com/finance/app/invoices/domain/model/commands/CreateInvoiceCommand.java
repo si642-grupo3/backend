@@ -16,7 +16,8 @@ public record CreateInvoiceCommand(
         Float tasa_efectiva,
         Integer periodo_capitalizacion,
         Date fecha_descuento,
-        Moneda Moneda
+        Long moneda,
+        Long cliente
 ) {
     public CreateInvoiceCommand{
         if(numero == null || numero.isBlank()) {
@@ -52,8 +53,11 @@ public record CreateInvoiceCommand(
         if (fecha_descuento == null) {
             throw new IllegalArgumentException("fecha_descuento cannot be null");
         }
-        if (Moneda == null) {
+        if (moneda == null) {
             throw new IllegalArgumentException("Moneda cannot be null");
+        }
+        if (cliente == null) {
+            throw new IllegalArgumentException("Cliente cannot be null");
         }
     }
 }

@@ -4,20 +4,21 @@ import java.util.Date;
 
 public record ReportResource(
         Long id,
-        Date fechaGiro,
-        Date fechaVencimiento,
-        Integer diasTranscurridos,
-        Float valorNominal,
+        Date fecha_giro,
+        Date fecha_vencimiento,
+        Integer dias_transcurridos,
+        Float valor_nominal,
         Float retencion,
-        Float tasaEfectiva,
-        Float tasaDescuento,
+        Float tasa_efectiva,
+        Float tasa_descuento,
         Float descuento,
-        Float costeInicial,
-        Float costeFinal,
-        Float valorNeto,
-        Float valorRecibido,
-        Float valorEntregado,
+        Float coste_inicial,
+        Float coste_final,
+        Float valor_neto,
+        Float valor_recibido,
+        Float valor_entregado,
         Float tcea,
-        Integer facturaId
+        Long factura_id,
+        Long cartera_id
 ) {
 }

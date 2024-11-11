@@ -17,7 +17,8 @@ public record CreateReportCommand(
     Float valorRecibido,
     Float valorEntregado,
     Float tcea,
-    Integer facturaId
+    Long factura_id,
+    Long cartera_id
 ) {
     public CreateReportCommand {
         if (fechaGiro == null) {
@@ -62,8 +63,11 @@ public record CreateReportCommand(
         if (tcea == null) {
             throw new IllegalArgumentException("tcea is required");
         }
-        if (facturaId == null) {
-            throw new IllegalArgumentException("facturaId is required");
+        if (factura_id == null) {
+            throw new IllegalArgumentException("factura_id is required");
+        }
+        if (cartera_id == null) {
+            throw new IllegalArgumentException("cartera_id is required");
         }
     }
 }

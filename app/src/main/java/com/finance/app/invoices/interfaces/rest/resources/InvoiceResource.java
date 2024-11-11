@@ -1,8 +1,11 @@
 package com.finance.app.invoices.interfaces.rest.resources;
 
+import com.finance.app.finalCosts.interfaces.rest.resources.FinalCostResource;
+import com.finance.app.initialCosts.interfaces.rest.resources.InitialCostResource;
 import com.finance.app.invoices.domain.model.entities.Moneda;
 
 import java.util.Date;
+import java.util.List;
 
 public record InvoiceResource(
         Long id,
@@ -18,6 +21,9 @@ public record InvoiceResource(
         Float tasa_efectiva,
         Integer periodo_capitalizacion,
         Date fecha_descuento,
-        Moneda Moneda
+        Moneda Moneda,
+        List<InitialCostResource> costesIniciales,
+        List<FinalCostResource> costesFinales,
+        Long cliente_id
 ) {
 }

@@ -5,6 +5,7 @@ import com.finance.app.finalCosts.domain.model.commands.CreateFinalCostCommand;
 import com.finance.app.finalCosts.domain.model.commands.DeleteFinalCostCommand;
 import com.finance.app.finalCosts.domain.services.FinalCostCommandService;
 import com.finance.app.finalCosts.infrastructure.persistence.jpa.FinalCostRepository;
+import com.finance.app.invoices.infrastructure.persistence.jpa.InvoiceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,14 +14,16 @@ import java.util.Optional;
 public class FinalCostCommandServiceImpl implements FinalCostCommandService {
 
     private final FinalCostRepository finalCostRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    public FinalCostCommandServiceImpl(FinalCostRepository finalCostRepository) {
+    public FinalCostCommandServiceImpl(FinalCostRepository finalCostRepository, InvoiceRepository invoiceRepository) {
         this.finalCostRepository = finalCostRepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     @Override
     public Optional<CosteFinal> handle(CreateFinalCostCommand command){
-        var finalCost = new CosteFinal(command);
+        var finalCost = new CosteFinal(command, invoiceRepository);
         var createdFinalCost = finalCostRepository.save(finalCost);
         return Optional.of(createdFinalCost);
     }
